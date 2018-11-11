@@ -1,5 +1,6 @@
 Spaceship A2 = new Spaceship();
 Star[] starfield = new Star[500];
+Asteroid[] rocks = new Asteroid[5];
 boolean accel = false;
 boolean rotateL = false;
 boolean rotateR = false;
@@ -11,6 +12,10 @@ public void setup() {
 	for (int i = 0; i < starfield.length; i++) {
 		starfield[i] = new Star();
 	}
+	for (int i = 0; i < rocks.length; i++) {
+		rocks[i] = new Asteroid();
+	}
+
   noCursor();
 }
 public void draw() {
@@ -19,6 +24,11 @@ public void draw() {
 	A2.move();
 	for (int i = 0; i < starfield.length; i++) {
 		starfield[i].show();
+	}
+	for (int i = 0; i < rocks.length; i++) {
+		rocks[i].show();
+		rocks[i].move();
+		rocks[i].turn(((int)Math.random()*20));
 	}
   if (accel == true)A2.accelerate(.1);
   if (rotateL == true)A2.turn(-5);

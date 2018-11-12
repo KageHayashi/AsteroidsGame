@@ -69,11 +69,15 @@ public void keyPressed()  {
   if ((key == 's')||(key=='S')) {S = true;}
   if ((key == 'a')||(key=='A')) {A = true;}
   if ((key == 'd')||(key=='D')) {D = true;}
+  if (key == ' ') {
+    A2.setX(Math.random()*800);
+    A2.setY(Math.random()*800);
+  }
 }
 
 public void keyReleased()  {
   if ((key == 'w')||(key=='W')) {W = false;}
   if ((key == 's')||(key=='S')) {S = false;}
   if ((key == 'a')||(key=='A')) {A = false;}
-  if ((key == 'd')||(key=='D')) {D = false;}
+  if ((key == 'd')||(key=='D')) {D = false;} 
 }

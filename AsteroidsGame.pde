@@ -1,11 +1,16 @@
 Spaceship A2 = new Spaceship();
 Star[] starfield = new Star[500];
 Asteroid[] rocks = new Asteroid[5];
-boolean accel = false;
-boolean rotateL = false;
-boolean rotateR = false;
+
+boolean W = false;
+boolean A = false;
+boolean S = false;
+boolean D = false;
+
+float speed = 5;
 
 public void setup() {
+  //fullScreen();
 	size(800,800);
 	A2.setX(width/2);
 	A2.setY(height/2);
@@ -16,35 +21,33 @@ public void setup() {
 		rocks[i] = new Asteroid();
 	}
 
-  noCursor();
+  //noCursor();
 }
 public void draw() {
 	background(0);
 	A2.show();
 	A2.move();
+  A2.accelerate();
+  A2.turn();
 	for (int i = 0; i < starfield.length; i++) {
 		starfield[i].show();
 	}
 	for (int i = 0; i < rocks.length; i++) {
 		rocks[i].show();
 		rocks[i].move();
-		rocks[i].turn(((int)Math.random()*20));
 	}
-  if (accel == true)A2.accelerate(.1);
-  if (rotateL == true)A2.turn(-5);
-  if (rotateR == true)A2.turn(5);
 }
 
-public void keyPressed() {
+/**public void keyPressed() {
 	if (key == CODED) {
 		if (keyCode == UP) {
-			accel = true;
+			up = true;
 		}
 		if (keyCode == LEFT) {
-			rotateL = true;
+			left = true;
 		}
 		if (keyCode == RIGHT) {
-			rotateR = true;
+			right = true;
 		}
 	}
 		if (key == ' ') {
@@ -59,18 +62,18 @@ public void keyPressed() {
     A2.setDirectionX(0);
     A2.setDirectionY(0);
   }
+}*/
+
+public void keyPressed()  {
+  if ((key == 'w')||(key=='W')) {W = true;}
+  if ((key == 's')||(key=='S')) {S = true;}
+  if ((key == 'a')||(key=='A')) {A = true;}
+  if ((key == 'd')||(key=='D')) {D = true;}
 }
 
-void keyReleased() {
-  if (key == CODED) {
-    if (keyCode == UP) {
-      accel = false;
-    }
-    if (keyCode == LEFT) {
-      rotateL = false;
-    }
-    if (keyCode == RIGHT) {
-      rotateR = false;
-    }
-  }
+public void keyReleased()  {
+  if ((key == 'w')||(key=='W')) {W = false;}
+  if ((key == 's')||(key=='S')) {S = false;}
+  if ((key == 'a')||(key=='A')) {A = false;}
+  if ((key == 'd')||(key=='D')) {D = false;}
 }

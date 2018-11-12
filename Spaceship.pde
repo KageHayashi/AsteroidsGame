@@ -28,4 +28,25 @@ class Spaceship extends Floater
     public double getDirectionY() {return (int)myDirectionY;}
     public void setPointDirection(int degrees) {myPointDirection = degrees;}
     public double getPointDirection() {return myPointDirection;}
+    
+    public void accelerate()  {
+      if (W==true) {myDirectionY=-speed;}
+      if (A==true) {myDirectionX=-speed;}
+      if (S==true) {myDirectionY= speed;}
+      if (D==true) {myDirectionX= speed;}
+      if (W==false&&S==false&&myDirectionY!=0)  {
+            if (myDirectionY>0) {myDirectionY-=speed*0.05;}
+            if (myDirectionY<0) {myDirectionY+=speed*0.05;}
+            if (abs((float)myDirectionY)<speed*0.05) {myDirectionY=0;}
+          }
+      if (A==false&&D==false&&myDirectionX!=0)  {
+            if (myDirectionX>0) {myDirectionX-=speed*0.05;}
+            if (myDirectionX<0) {myDirectionX+=speed*0.05;}
+            if (abs((float)myDirectionX)<speed*0.05) {myDirectionX=0;}
+          }
+      }
+      
+    public void turn()  {
+      myPointDirection = (Math.atan2(mouseY - myCenterY,mouseX - myCenterX))/PI*180;
+    }
 }

@@ -36,7 +36,7 @@ class Asteroid extends Floater {
   public double getPointDirection() {return myPointDirection;}
 
   public void move() {
-    myPointDirection += rotSpeed;
+  	turn(rotSpeed);
     super.move();
   }
 

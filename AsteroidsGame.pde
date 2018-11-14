@@ -6,12 +6,14 @@ boolean W = false;
 boolean A = false;
 boolean S = false;
 boolean D = false;
+boolean shift = false;
 
 float speed = 5;
+float starSpeed = 2;
 
 public void setup() {
   //fullScreen();
-	size(800,800);
+	size(800,800,P3D);
 	A2.setX(width/2);
 	A2.setY(height/2);
 	for (int i = 0; i < starfield.length; i++) {
@@ -31,38 +33,13 @@ public void draw() {
   A2.turn();
 	for (int i = 0; i < starfield.length; i++) {
 		starfield[i].show();
+    starfield[i].update();
 	}
 	for (int i = 0; i < rocks.length; i++) {
 		rocks[i].show();
 		rocks[i].move();
 	}
 }
-
-/**public void keyPressed() {
-	if (key == CODED) {
-		if (keyCode == UP) {
-			up = true;
-		}
-		if (keyCode == LEFT) {
-			left = true;
-		}
-		if (keyCode == RIGHT) {
-			right = true;
-		}
-	}
-		if (key == ' ') {
-			A2.setX((int)(Math.random()*800));
-			A2.setY((int)(Math.random()*800));
-			A2.accelerate(0);
-      A2.setPointDirection(0);
-			A2.setDirectionX(0);
-			A2.setDirectionY(0);
-	}
-  if (keyCode == DOWN) {
-    A2.setDirectionX(0);
-    A2.setDirectionY(0);
-  }
-}*/
 
 public void keyPressed()  {
   if ((key == 'w')||(key=='W')) {W = true;}
@@ -73,6 +50,11 @@ public void keyPressed()  {
     A2.setX(Math.random()*800);
     A2.setY(Math.random()*800);
   }
+  if (key == CODED) {
+  	if (keyCode == SHIFT) {
+  		shift = true;
+  	}
+  }
 }
 
 public void keyReleased()  {
@@ -80,4 +62,9 @@ public void keyReleased()  {
   if ((key == 's')||(key=='S')) {S = false;}
   if ((key == 'a')||(key=='A')) {A = false;}
   if ((key == 'd')||(key=='D')) {D = false;} 
+  if (key == CODED) {
+  	if (keyCode == SHIFT) {
+  		shift = false;
+  	}
+  }
 }

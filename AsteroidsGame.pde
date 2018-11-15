@@ -33,7 +33,7 @@ public void draw() {
   A2.turn();
 	for (int i = 0; i < starfield.length; i++) {
 		starfield[i].show();
-    starfield[i].update();
+    //starfield[i].update();
 	}
 	for (int i = 0; i < rocks.length; i++) {
 		rocks[i].show();

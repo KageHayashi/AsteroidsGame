@@ -13,7 +13,7 @@ float starSpeed = 2;
 
 public void setup() {
   //fullScreen();
-	size(800,800,P3D);
+	size(800,800);
 	A2.setX(width/2);
 	A2.setY(height/2);
 	for (int i = 0; i < starfield.length; i++) {

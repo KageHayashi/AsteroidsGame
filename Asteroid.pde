@@ -19,7 +19,7 @@ class Asteroid extends Floater {
     myDirectionY = Math.random()*5;
     myPointDirection = Math.random()*360;
 
-    rotSpeed = ((int)Math.random()*20);
+    rotSpeed = ((int)Math.random()*10-5);
 
     myColor = 175;
   }
@@ -37,6 +37,7 @@ class Asteroid extends Floater {
 
   public void move() {
   	turn(rotSpeed); 
+
     myCenterX += myDirectionX;
     myCenterY += myDirectionY;
     if(myCenterX >width)

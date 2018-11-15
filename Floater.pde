@@ -34,9 +34,13 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   }   
   public void move ()   //move the floater in the current direction of travel
   {      
-    //change the x and y coordinates by myDirectionX and myDirectionY       
-    myCenterX += myDirectionX;    
-    myCenterY += myDirectionY;     
+    //change the x and y coordinates by myDirectionX and myDirectionY
+    if (myCenterX + myDirectionX > 0 && myCenterX + myDirectionX < width) {       
+      myCenterX += myDirectionX;   
+    } 
+    if (myCenterY + myDirectionY > 0 && myCenterX + myDirectionY < height) {
+      myCenterY += myDirectionY;     
+  }
 
     //wrap around screen    
     if(myCenterX >width)

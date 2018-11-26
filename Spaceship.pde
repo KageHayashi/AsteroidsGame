@@ -30,20 +30,22 @@ class Spaceship extends Floater
     public double getPointDirection() {return myPointDirection;}
     
     public void accelerate()  {
-      if (W==true) {myDirectionY=-speed;}
-      if (A==true) {myDirectionX=-speed;}
-      if (S==true) {myDirectionY= speed;}
-      if (D==true) {myDirectionX= speed;}
-      if (W==false&&S==false&&myDirectionY!=0)  {
-            if (myDirectionY>0) {myDirectionY-=speed*0.05;}
-            if (myDirectionY<0) {myDirectionY+=speed*0.05;}
-            if (abs((float)myDirectionY)<speed*0.05) {myDirectionY=0;}
+      if (W == true) {myDirectionY=-speed;}
+      if (A == true) {myDirectionX=-speed;}
+      if (S ==true) {myDirectionY= speed;}
+      if (D == true) {myDirectionX= speed;}
+      if (W == false && S == false && myDirectionY != 0)  {
+            if (myDirectionY > 0) {myDirectionY -= speed*0.05;}
+            if (myDirectionY < 0) {myDirectionY += speed*0.05;}
+            if (abs((float)myDirectionY) < speed*0.05) {myDirectionY = 0;}
           }
-      if (A==false&&D==false&&myDirectionX!=0)  {
-            if (myDirectionX>0) {myDirectionX-=speed*0.05;}
-            if (myDirectionX<0) {myDirectionX+=speed*0.05;}
-            if (abs((float)myDirectionX)<speed*0.05) {myDirectionX=0;}
+      if (A == false && D == false && myDirectionX != 0)  {
+            if (myDirectionX > 0) {myDirectionX -= speed*0.05;}
+            if (myDirectionX < 0) {myDirectionX += speed*0.05;}
+            if (abs((float)myDirectionX) < speed*0.05) {myDirectionX = 0;}
           }
+       if (Shift == true) {speed = 10;}
+       else if (Shift == false) {speed = 5;}
       }
       
     public void turn()  {

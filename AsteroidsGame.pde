@@ -1,12 +1,13 @@
 Spaceship A2 = new Spaceship();
 Star[] starfield = new Star[500];
-Asteroid[] rocks = new Asteroid[5];
+//ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
+Asteroid[] rocks = new Asteroid[10];
 
 boolean W = false;
 boolean A = false;
 boolean S = false;
 boolean D = false;
-boolean shift = false;
+boolean Shift = false;
 
 float speed = 5;
 float starSpeed = 2;
@@ -52,7 +53,7 @@ public void keyPressed()  {
   }
   if (key == CODED) {
   	if (keyCode == SHIFT) {
-  		shift = true;
+  		Shift = true;
   	}
   }
 }
@@ -64,7 +65,7 @@ public void keyReleased()  {
   if ((key == 'd')||(key=='D')) {D = false;} 
   if (key == CODED) {
   	if (keyCode == SHIFT) {
-  		shift = false;
+  		Shift = false;
   	}
   }
 }

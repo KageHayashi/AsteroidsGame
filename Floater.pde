@@ -38,7 +38,7 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     if (myCenterX + myDirectionX > 0 && myCenterX + myDirectionX < width) {       
       myCenterX += myDirectionX;   
     } 
-    if (myCenterY + myDirectionY > 0 && myCenterX + myDirectionY < height) {
+    if (myCenterY + myDirectionY > 0 && myCenterY + myDirectionY < height) {
       myCenterY += myDirectionY;     
   }
 
@@ -51,10 +51,10 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     {     
       myCenterX = width;    
     }    
-    if(myCenterY >height)
+    /*if(myCenterY >height)
     {    
       myCenterY = 0;    
-    } 
+    }*/ 
     
     else if (myCenterY < 0)
     {     

@@ -1,7 +1,7 @@
 Spaceship A2 = new Spaceship();
 Star[] starfield = new Star[500];
-//ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
-Asteroid[] rocks = new Asteroid[10];
+ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
+//Asteroid[] rocks = new Asteroid[10];
 
 boolean W = false;
 boolean A = false;
@@ -11,17 +11,21 @@ boolean Shift = false;
 
 float speed = 5;
 float starSpeed = 2;
+float fuel = 100;
 
 public void setup() {
-  //fullScreen();
-	size(800,800);
+  	fullScreen();
+	//size(800,800);
 	A2.setX(width/2);
 	A2.setY(height/2);
 	for (int i = 0; i < starfield.length; i++) {
 		starfield[i] = new Star();
 	}
-	for (int i = 0; i < rocks.length; i++) {
+	/*for (int i = 0; i < rocks.length; i++) {
 		rocks[i] = new Asteroid();
+	}*/
+	for (int i = 0; i < 16; i++) {
+		asteroids.add(new Asteroid());
 	}
 
   //noCursor();
@@ -36,9 +40,17 @@ public void draw() {
 		starfield[i].show();
     //starfield[i].update();
 	}
-	for (int i = 0; i < rocks.length; i++) {
+	/*for (int i = 0; i < rocks.length; i++) {
 		rocks[i].show();
 		rocks[i].move();
+	}*/
+	for (int i = 0; i < asteroids.size(); i++) {
+		asteroids.get(i).show();
+		asteroids.get(i).move();
+		float d = dist(A2.getX(), A2.getY(), asteroids.get(i).getX(), asteroids.get(i).getY());
+		if (d < 20) {
+			asteroids.remove(i);
+		}
 	}
 }
 

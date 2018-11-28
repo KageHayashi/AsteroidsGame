@@ -1,5 +1,4 @@
-class Spaceship extends Floater
-{
+class Spaceship extends Floater	{
     public Spaceship() {
     	corners = 5;
     	xCorners = new int[corners];
@@ -44,7 +43,15 @@ class Spaceship extends Floater
             if (myDirectionX < 0) {myDirectionX += speed*0.05;}
             if (abs((float)myDirectionX) < speed*0.05) {myDirectionX = 0;}
           }
-       if (Shift == true) {speed = 10;}
+       if (Shift == true) {
+       		speed = 10; 
+       		/*for (int i = 0; i < fuel; i++) {
+       			fuel -= i;
+       			if (fuel <= 0) {
+       				Shift = false;
+       			}
+       		}*/
+       	}
        else if (Shift == false) {speed = 5;}
       }
       

@@ -14,8 +14,8 @@ float starSpeed = 2;
 float fuel = 100;
 
 public void setup() {
-  	fullScreen();
-	//size(800,800);
+  	//fullScreen();
+	size(800,800);
 	A2.setX(width/2);
 	A2.setY(height/2);
 	for (int i = 0; i < starfield.length; i++) {

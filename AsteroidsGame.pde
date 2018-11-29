@@ -8,6 +8,9 @@ boolean A = false;
 boolean S = false;
 boolean D = false;
 boolean Shift = false;
+//boolean WeaponSwap1 = false;
+//boolean WeaponSwap2 = false;
+//boolean voidShift = false;
 
 float speed = 5;
 float starSpeed = 2;
@@ -15,7 +18,7 @@ float fuel = 100;
 
 public void setup() {
   	//fullScreen();
-	size(800,800);
+	size(1080,720);
 	A2.setX(width/2);
 	A2.setY(height/2);
 	for (int i = 0; i < starfield.length; i++) {
@@ -60,14 +63,16 @@ public void keyPressed()  {
   if ((key == 'a')||(key=='A')) {A = true;}
   if ((key == 'd')||(key=='D')) {D = true;}
   if (key == ' ') {
-    A2.setX(Math.random()*800);
-    A2.setY(Math.random()*800);
+    A2.setX(Math.random()*1080);
+    A2.setY(Math.random()*720);
   }
   if (key == CODED) {
   	if (keyCode == SHIFT) {
   		Shift = true;
   	}
   }
+  /*if ((key == 'q')||(key == 'Q')) {WeaponSwap1 = true;}
+  if ((key == 'e')||(key == 'E')) {WeaponSwap2 = true;}*/
 }
 
 public void keyReleased()  {

@@ -58,4 +58,19 @@ class Spaceship extends Floater	{
     public void turn()  {
       myPointDirection = (Math.atan2(mouseY - myCenterY,mouseX - myCenterX))/PI*180;
     }
+
+    /*public void voidShift() {
+    	if (voidShift == true) {
+
+    	}
+    }*/
+
+    /*public void arsenal() {
+    	if (WeaponSwap1 == true) {
+
+    	}
+    	if (WeaponSwap2 == true) {
+
+    	}
+    }*/
 }

@@ -1,13 +1,14 @@
 Spaceship A2 = new Spaceship();
 Star[] starfield = new Star[500];
 ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
-//Asteroid[] rocks = new Asteroid[10];
+ArrayList <Bullet> bullets = new ArrayList <Bullet>();
 
 boolean W = false;
 boolean A = false;
 boolean S = false;
 boolean D = false;
 boolean Shift = false;
+boolean shoot = false;
 //boolean WeaponSwap1 = false;
 //boolean WeaponSwap2 = false;
 //boolean voidShift = false;
@@ -37,8 +38,8 @@ public void draw() {
 	background(0);
 	A2.show();
 	A2.move();
-  A2.accelerate();
-  A2.turn();
+  	A2.accelerate();
+  	A2.turn();
 	for (int i = 0; i < starfield.length; i++) {
 		starfield[i].show();
     //starfield[i].update();
@@ -55,6 +56,13 @@ public void draw() {
 			asteroids.remove(i);
 		}
 	}
+
+	for (int i = 0; i < bullets.size(); i++) {
+		bullets.get(i).show();
+		bullets.get(i).move();
+	}
+
+	if (shoot == true) {shoot();}
 }
 
 public void keyPressed()  {
@@ -62,10 +70,7 @@ public void keyPressed()  {
   if ((key == 's')||(key=='S')) {S = true;}
   if ((key == 'a')||(key=='A')) {A = true;}
   if ((key == 'd')||(key=='D')) {D = true;}
-  if (key == ' ') {
-    A2.setX(Math.random()*1080);
-    A2.setY(Math.random()*720);
-  }
+  if ((key == ' ')) {shoot = true;}
   if (key == CODED) {
   	if (keyCode == SHIFT) {
   		Shift = true;
@@ -80,9 +85,14 @@ public void keyReleased()  {
   if ((key == 's')||(key=='S')) {S = false;}
   if ((key == 'a')||(key=='A')) {A = false;}
   if ((key == 'd')||(key=='D')) {D = false;} 
+  if ((key == ' ')) {shoot = false;}
   if (key == CODED) {
   	if (keyCode == SHIFT) {
   		Shift = false;
   	}
   }
+}
+
+public void shoot() {
+	bullets.add(new Bullet(A2));
 }

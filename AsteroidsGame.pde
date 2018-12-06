@@ -8,7 +8,7 @@ boolean A = false;
 boolean S = false;
 boolean D = false;
 boolean Shift = false;
-boolean shoot = false;
+boolean is_shooting = false;
 //boolean WeaponSwap1 = false;
 //boolean WeaponSwap2 = false;
 //boolean voidShift = false;
@@ -51,8 +51,8 @@ public void draw() {
 	for (int i = 0; i < asteroids.size(); i++) {
 		asteroids.get(i).show();
 		asteroids.get(i).move();
-		float d = dist(A2.getX(), A2.getY(), asteroids.get(i).getX(), asteroids.get(i).getY());
-		if (d < 20) {
+		float ship_check = dist(A2.getX(), A2.getY(), asteroids.get(i).getX(), asteroids.get(i).getY());
+		if (ship_check < 20) {
 			asteroids.remove(i);
 		}
 	}
@@ -61,8 +61,8 @@ public void draw() {
 		bullets.get(i).show();
 		bullets.get(i).move();
 	}
-
-	if (shoot == true) {shoot();}
+	
+	if (is_shooting == true) {shoot();}
 }
 
 public void keyPressed()  {
@@ -70,7 +70,7 @@ public void keyPressed()  {
   if ((key == 's')||(key=='S')) {S = true;}
   if ((key == 'a')||(key=='A')) {A = true;}
   if ((key == 'd')||(key=='D')) {D = true;}
-  if ((key == ' ')) {shoot = true;}
+  if ((key == ' ')) {is_shooting = true;}
   if (key == CODED) {
   	if (keyCode == SHIFT) {
   		Shift = true;
@@ -85,7 +85,7 @@ public void keyReleased()  {
   if ((key == 's')||(key=='S')) {S = false;}
   if ((key == 'a')||(key=='A')) {A = false;}
   if ((key == 'd')||(key=='D')) {D = false;} 
-  if ((key == ' ')) {shoot = false;}
+  if ((key == ' ')) {is_shooting = false;}
   if (key == CODED) {
   	if (keyCode == SHIFT) {
   		Shift = false;

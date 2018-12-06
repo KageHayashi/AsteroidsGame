@@ -9,8 +9,8 @@ boolean S = false;
 boolean D = false;
 boolean Shift = false;
 boolean is_shooting = false;
-//boolean WeaponSwap1 = false;
-//boolean WeaponSwap2 = false;
+boolean WeaponSwap1 = false;
+boolean WeaponSwap2 = false;
 //boolean voidShift = false;
 
 float speed = 5;
@@ -76,8 +76,8 @@ public void keyPressed()  {
   		Shift = true;
   	}
   }
-  /*if ((key == 'q')||(key == 'Q')) {WeaponSwap1 = true;}
-  if ((key == 'e')||(key == 'E')) {WeaponSwap2 = true;}*/
+  if ((key == 'q')||(key == 'Q')) {WeaponSwap1 = true; WeaponSwap2 = false;}
+  if ((key == 'e')||(key == 'E')) {WeaponSwap2 = true; WeaponSwap1 = false;}
 }
 
 public void keyReleased()  {

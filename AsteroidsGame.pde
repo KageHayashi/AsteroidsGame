@@ -9,13 +9,17 @@ boolean S = false;
 boolean D = false;
 boolean Shift = false;
 boolean is_shooting = false;
-boolean WeaponSwap1 = false;
-boolean WeaponSwap2 = false;
+boolean Weapon0 = true;
+boolean Weapon1 = false;
+boolean Weapon2 = false;
 //boolean voidShift = false;
 
 float speed = 5;
 float starSpeed = 2;
 float fuel = 100;
+
+int mouseWheelUP = 0;
+int mouseWheelDOWN = 0;
 
 public void setup() {
   	//fullScreen();
@@ -63,6 +67,8 @@ public void draw() {
 	}
 	
 	if (is_shooting == true) {shoot();}
+	if (mouseWheelDOWN > 0) {textSize(26); text("1",5,20);}
+	if (mouseWheelUP > 0) {textSize(26); text("2",5,20);}
 }
 
 public void keyPressed()  {
@@ -76,8 +82,9 @@ public void keyPressed()  {
   		Shift = true;
   	}
   }
-  if ((key == 'q')||(key == 'Q')) {WeaponSwap1 = true; WeaponSwap2 = false;}
-  if ((key == 'e')||(key == 'E')) {WeaponSwap2 = true; WeaponSwap1 = false;}
+  //if ((key == 'q')||(key == 'Q')) {WeaponSwap1 = true; WeaponSwap2 = false;}
+  //if ((key == 'e')||(key == 'E')) {WeaponSwap2 = true; WeaponSwap1 = false;}
+
 }
 
 public void keyReleased()  {
@@ -95,4 +102,23 @@ public void keyReleased()  {
 
 public void shoot() {
 	bullets.add(new Bullet(A2));
+}
+
+void mouseWheel(MouseEvent event) {
+	float e = event.getCount();
+	if (e > 0) {
+		mouseWheelDOWN++;
+		mouseWheelUP = 0;
+		if (mouseWheelDOWN > 0) {
+			Weapon0 = false; Weapon1 = true; Weapon2 = false;
+		}
+	}
+	else if (e < 0) {
+		 mouseWheelUP++;
+		 mouseWheelDOWN = 0;
+		 if (mouseWheelUP > 0) {
+		 	Weapon0 = false; Weapon1 = false; Weapon2 = true;
+		 }
+	}
+
 }

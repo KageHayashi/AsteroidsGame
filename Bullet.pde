@@ -32,7 +32,8 @@ class Bullet extends Floater {
     	stroke(255);  
     	ellipse((float)myCenterX, (float)myCenterY, d, d1);
 
-    	if (WeaponSwap1 == true) {d = 20;}
-    	if (WeaponSwap2 == true) {d = 50;d1 = 50;}
+    	if (Weapon0 == true) {d = 5; d1 = 5;}
+    	if (Weapon1 == true) {d = 20;}
+    	if (Weapon2 == true) {d = 50;d1 = 50;}
     }
 }

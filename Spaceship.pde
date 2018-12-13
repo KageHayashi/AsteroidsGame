@@ -28,6 +28,7 @@ class Spaceship extends Floater	{
       if (A == true) {myDirectionX=-speed;}
       if (S ==true) {myDirectionY= speed;}
       if (D == true) {myDirectionX= speed;}
+      
       if (W == false && S == false && myDirectionY != 0)  {
             if (myDirectionY > 0) {myDirectionY -= speed*0.05;}
             if (myDirectionY < 0) {myDirectionY += speed*0.05;}

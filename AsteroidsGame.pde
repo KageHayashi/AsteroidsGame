@@ -3,6 +3,11 @@ Star[] starfield = new Star[500];
 ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
 ArrayList <Bullet> bullets = new ArrayList <Bullet>();
 
+ProgressBAR Health_Bar = new ProgressBAR(50,650);
+ProgressBAR Shield_Bar = new ProgressBAR(49,665);
+ProgressBAR SMDR = new ProgressBAR(800,650);
+//ArrayList <ProgressBAR> bars = new ArrayList <ProgressBAR>();
+
 boolean W = false;
 boolean A = false;
 boolean S = false;
@@ -48,6 +53,7 @@ public void draw() {
 		starfield[i].show();
     //starfield[i].update();
 	}
+
 	/*for (int i = 0; i < rocks.length; i++) {
 		rocks[i].show();
 		rocks[i].move();
@@ -56,8 +62,12 @@ public void draw() {
 		asteroids.get(i).show();
 		asteroids.get(i).move();
 		float ship_check = dist(A2.getX(), A2.getY(), asteroids.get(i).getX(), asteroids.get(i).getY());
-		if (ship_check < 20) {
+		if (ship_check < 30) {
 			asteroids.remove(i);
+			Shield_Bar.decreaseI(50);
+		}
+		if (Shield_Bar.getI() == 0) {
+
 		}
 	}
 
@@ -69,6 +79,18 @@ public void draw() {
 	if (is_shooting == true) {shoot();}
 	if (mouseWheelDOWN > 0) {textSize(26); text("1",5,20);}
 	if (mouseWheelUP > 0) {textSize(26); text("2",5,20);}
+
+	Health_Bar.show();
+	Health_Bar.setSize(19);
+	Health_Bar.colorFill(255,0,0);
+	Shield_Bar.show();
+	Shield_Bar.setSize(5);
+	Shield_Bar.colorFill(0,0,255);
+	SMDR.show();
+	SMDR.setSize(19);
+	SMDR.colorFill(5,255,5);
+	text("SUPER MEGA DEATH ROCKET", 50,800);
+
 }
 
 public void keyPressed()  {
@@ -101,8 +123,11 @@ public void keyReleased()  {
 }
 
 public void shoot() {
-	bullets.add(new Bullet(A2));
+	if (frameCount % 5 == 0) {
+		bullets.add(new Bullet(A2));
+	}
 }
+	
 
 void mouseWheel(MouseEvent event) {
 	float e = event.getCount();

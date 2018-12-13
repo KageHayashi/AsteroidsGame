@@ -1,18 +1,13 @@
 class Spaceship extends Floater	{
     public Spaceship() {
-    	corners = 5;
-    	xCorners = new int[corners];
-    	yCorners = new int[corners];
-    	xCorners[0] = 25;
-    	yCorners[0] = 0;
-    	xCorners[1] = -3;
-    	yCorners[1] = -15;
-    	xCorners[2] = -16;
-    	yCorners[2] = -6;
-    	xCorners[3] = -16;
-    	yCorners[3] = 6;
-    	xCorners[4] = -3;
-    	yCorners[4] = 15;
+      int i = 1;
+      corners = 16;
+      xCorners = new int[corners];
+      yCorners = new int[corners];
+      int [] xCornersI = {25*i,20*i,12*i,8*i,-4*i,-2*i,-6*i,-8*i,-12*i,-8*i,-6*i,-2*i,-4*i,8*i,12*i,20*i};
+      int [] yCornersI = {0*i,-2*i,-8*i,-8*i,-18*i,-6*i,-6*i,-2*i,0*i,2*i,6*i,6*i,18*i,8*i,8*i,2*i};
+      xCorners = xCornersI;
+      yCorners = yCornersI;
 
       myColor = 255;
     }
@@ -27,7 +22,7 @@ class Spaceship extends Floater	{
     public double getDirectionY() {return (int)myDirectionY;}
     public void setPointDirection(int degrees) {myPointDirection = degrees;}
     public double getPointDirection() {return myPointDirection;}
-    
+
     public void accelerate()  {
       if (W == true) {myDirectionY=-speed;}
       if (A == true) {myDirectionX=-speed;}
@@ -44,7 +39,7 @@ class Spaceship extends Floater	{
             if (abs((float)myDirectionX) < speed*0.05) {myDirectionX = 0;}
           }
        if (Shift == true) {
-       		speed = 10; 
+       		speed = 10;
        		/*for (int i = 0; i < fuel; i++) {
        			fuel -= i;
        			if (fuel <= 0) {
@@ -54,7 +49,7 @@ class Spaceship extends Floater	{
        	}
        else if (Shift == false) {speed = 5;}
       }
-      
+
     public void turn()  {
       myPointDirection = (Math.atan2(mouseY - myCenterY,mouseX - myCenterX))/PI*180;
     }

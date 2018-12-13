@@ -36,27 +36,27 @@ class Asteroid extends Floater {
   public double getPointDirection() {return myPointDirection;}
 
   public void move() {
-  	turn(rotSpeed); 
+  	turn(rotSpeed);
 
     myCenterX += myDirectionX;
     myCenterY += myDirectionY;
     if(myCenterX >width)
-    {     
-      myCenterX = 0;    
-    }    
+    {
+      myCenterX = 0;
+    }
     else if (myCenterX<0)
-    {     
-      myCenterX = width;    
-    }    
+    {
+      myCenterX = width;
+    }
     if(myCenterY >height)
-    {    
-      myCenterY = 0;    
-    } 
-    
+    {
+      myCenterY = 0;
+    }
+
     else if (myCenterY < 0)
-    {     
-      myCenterY = height;    
-    }   
+    {
+      myCenterY = height;
+    }
   }
 
 }

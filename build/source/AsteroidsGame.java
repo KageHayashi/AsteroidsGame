@@ -19,6 +19,11 @@ Star[] starfield = new Star[500];
 ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
 ArrayList <Bullet> bullets = new ArrayList <Bullet>();
 
+ProgressBAR Health_Bar = new ProgressBAR(50,650);
+ProgressBAR Shield_Bar = new ProgressBAR(49,665);
+ProgressBAR SMDR = new ProgressBAR(800,650);
+//ArrayList <ProgressBAR> bars = new ArrayList <ProgressBAR>();
+
 boolean W = false;
 boolean A = false;
 boolean S = false;
@@ -64,6 +69,7 @@ public void draw() {
 		starfield[i].show();
     //starfield[i].update();
 	}
+
 	/*for (int i = 0; i < rocks.length; i++) {
 		rocks[i].show();
 		rocks[i].move();
@@ -72,19 +78,37 @@ public void draw() {
 		asteroids.get(i).show();
 		asteroids.get(i).move();
 		float ship_check = dist(A2.getX(), A2.getY(), asteroids.get(i).getX(), asteroids.get(i).getY());
-		if (ship_check < 20) {
+		if (ship_check < 30) {
 			asteroids.remove(i);
+			Shield_Bar.decreaseI(50);
+		}
+		if (Shield_Bar.getI() == 0) {
+
 		}
 	}
 
 	for (int i = 0; i < bullets.size(); i++) {
 		bullets.get(i).show();
 		bullets.get(i).move();
+		bullets.get(i).accelerate();
+
 	}
-	
+
 	if (is_shooting == true) {shoot();}
-	if (mouseWheelDOWN > 0) {textSize(26); text("1",5,20);}
-	if (mouseWheelUP > 0) {textSize(26); text("2",5,20);}
+	if (Weapon1 == true) {textSize(26); text("1",5,20);}
+	if (Weapon2 == true) {textSize(26); text("2",5,20);}
+	if (Weapon0 == true) {textSize(26); text("0",5,20);}
+
+	Health_Bar.show();
+	Health_Bar.setSize(19);
+	Health_Bar.colorFill(255,0,0);
+	Shield_Bar.show();
+	Shield_Bar.setSize(5);
+	Shield_Bar.colorFill(0,0,255);
+	SMDR.show();
+	SMDR.setSize(19);
+	SMDR.colorFill(5,255,5);
+
 }
 
 public void keyPressed()  {
@@ -92,6 +116,7 @@ public void keyPressed()  {
   if ((key == 's')||(key=='S')) {S = true;}
   if ((key == 'a')||(key=='A')) {A = true;}
   if ((key == 'd')||(key=='D')) {D = true;}
+	if ((key == 'e')||(key=='E')) {Weapon0 = true; Weapon1 = false; Weapon2 = false;}
   if ((key == ' ')) {is_shooting = true;}
   if (key == CODED) {
   	if (keyCode == SHIFT) {
@@ -107,7 +132,7 @@ public void keyReleased()  {
   if ((key == 'w')||(key=='W')) {W = false;}
   if ((key == 's')||(key=='S')) {S = false;}
   if ((key == 'a')||(key=='A')) {A = false;}
-  if ((key == 'd')||(key=='D')) {D = false;} 
+  if ((key == 'd')||(key=='D')) {D = false;}
   if ((key == ' ')) {is_shooting = false;}
   if (key == CODED) {
   	if (keyCode == SHIFT) {
@@ -117,8 +142,11 @@ public void keyReleased()  {
 }
 
 public void shoot() {
-	bullets.add(new Bullet(A2));
+	if (frameCount % 5 == 0) {
+		bullets.add(new Bullet(A2));
+	}
 }
+
 
 public void mouseWheel(MouseEvent event) {
 	float e = event.getCount();
@@ -141,17 +169,14 @@ public void mouseWheel(MouseEvent event) {
 class Asteroid extends Floater {
   private int rotSpeed;
   public Asteroid() {
+    int i = 2;
     corners = 4;
     xCorners = new int[corners];
     yCorners = new int[corners];
-    xCorners[0] = 10;
-    yCorners[0] = 1;
-    xCorners[1] = 1;
-    yCorners[1] = -10;
-    xCorners[2] = -10;
-    yCorners[2] = -10;
-    xCorners[3] = -10;
-    yCorners[3] = 10;
+    int [] xCornersI = {10*i,1*i,-10*i,-10*i};
+    int [] yCornersI = {1*i,-10*i,-10*i,10*i};
+    xCorners = xCornersI;
+    yCorners = yCornersI;
 
     myCenterX = Math.random()*800;
     myCenterY = Math.random()*800;
@@ -202,11 +227,12 @@ class Asteroid extends Floater {
 }
 class Bullet extends Floater {
 	private float d,d1;
+	private double dRadians;
 	public Bullet(Spaceship ship) {
 		myCenterX = ship.getX();
 		myCenterY = ship.getY();
 		myPointDirection = (Math.atan2(mouseY - myCenterY,mouseX - myCenterX))/PI*180;
-		double dRadians = myPointDirection*(Math.PI/180);
+		dRadians = myPointDirection*(Math.PI/180);
 		myDirectionX = 5*Math.cos(dRadians);
 		myDirectionY = 5*Math.sin(dRadians);
 		d = 5;
@@ -224,14 +250,20 @@ class Bullet extends Floater {
     public void setPointDirection(int degrees) {myPointDirection = degrees;}
     public double getPointDirection() {return myPointDirection;}
 
+
+		public void accelerate() {
+			 myDirectionX = (speed*4 * Math.cos(dRadians));
+			 myDirectionY = (speed*4 * Math.sin(dRadians));
+		 }
+
     public void move() {
-    	myCenterX += myDirectionX;   
-    	myCenterY += myDirectionY; 
+    	myCenterX += myDirectionX;
+    	myCenterY += myDirectionY;
     }
-    
+
     public void show() {
-    	fill(255);   
-    	stroke(255);  
+    	fill(255);
+    	stroke(255);
     	ellipse((float)myCenterX, (float)myCenterY, d, d1);
 
     	if (Weapon0 == true) {d = 5; d1 = 5;}
@@ -260,14 +292,14 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
   abstract public double getPointDirection();
 
   //Accelerates the floater in the direction it is pointing (myPointDirection)
-  public void accelerate (double dAmount)
+  /*public void accelerate (double dAmount)
   {
     //convert the current direction the floater is pointing to radians
     double dRadians = myPointDirection*(Math.PI/180);
     //change coordinates of direction of travel
     myDirectionX += ((dAmount) * Math.cos(dRadians));
     myDirectionY += ((dAmount) * Math.sin(dRadians));
-  }
+  }*/
   public void turn (int nDegreesOfRotation)
   {
     //rotates the floater by a given number of degrees
@@ -359,6 +391,7 @@ class Spaceship extends Floater	{
       if (A == true) {myDirectionX=-speed;}
       if (S ==true) {myDirectionY= speed;}
       if (D == true) {myDirectionX= speed;}
+      
       if (W == false && S == false && myDirectionY != 0)  {
             if (myDirectionY > 0) {myDirectionY -= speed*0.05f;}
             if (myDirectionY < 0) {myDirectionY += speed*0.05f;}
@@ -419,6 +452,48 @@ class Star {
     ellipse(x,y,1,1);
   }
 
+}
+class ProgressBAR {
+	private float i;
+	private boolean pro;
+	private int x, y, r, g, b, size;
+
+	public ProgressBAR(int setX, int setY) {
+		x = setX;
+		y = setY;
+		i = 200;
+	}
+
+	public void colorFill(int r1, int g1, int b1) {
+		r = r1;
+		g = g1;
+		b = b1;
+	}
+
+	public void setSize(int s) {
+		size = s;
+	}
+
+	public void show() {
+		fill(r, g, b);
+    	noStroke();
+		rect(x, y, i, size);
+		noFill();
+    	//stroke(255);
+    	rect(x, y, 200, size);
+	}
+
+	public void decreaseI(float x) {
+		i-=x;
+	}
+
+	public void increaseI(float x) {
+		i+=x;
+	}
+
+	public float getI() {
+		return i;
+	}
 }
   public void settings() { 	size(1080,720); }
   static public void main(String[] passedArgs) {

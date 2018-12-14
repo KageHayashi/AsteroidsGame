@@ -74,11 +74,14 @@ public void draw() {
 	for (int i = 0; i < bullets.size(); i++) {
 		bullets.get(i).show();
 		bullets.get(i).move();
+		bullets.get(i).accelerate();
+
 	}
-	
+
 	if (is_shooting == true) {shoot();}
-	if (mouseWheelDOWN > 0) {textSize(26); text("1",5,20);}
-	if (mouseWheelUP > 0) {textSize(26); text("2",5,20);}
+	if (Weapon1 == true) {textSize(26); text("1",5,20);}
+	if (Weapon2 == true) {textSize(26); text("2",5,20);}
+	if (Weapon0 == true) {textSize(26); text("0",5,20);}
 
 	Health_Bar.show();
 	Health_Bar.setSize(19);
@@ -89,7 +92,6 @@ public void draw() {
 	SMDR.show();
 	SMDR.setSize(19);
 	SMDR.colorFill(5,255,5);
-	text("SUPER MEGA DEATH ROCKET", 50,800);
 
 }
 
@@ -98,6 +100,7 @@ public void keyPressed()  {
   if ((key == 's')||(key=='S')) {S = true;}
   if ((key == 'a')||(key=='A')) {A = true;}
   if ((key == 'd')||(key=='D')) {D = true;}
+	if ((key == 'e')||(key=='E')) {Weapon0 = true; Weapon1 = false; Weapon2 = false;}
   if ((key == ' ')) {is_shooting = true;}
   if (key == CODED) {
   	if (keyCode == SHIFT) {
@@ -113,7 +116,7 @@ public void keyReleased()  {
   if ((key == 'w')||(key=='W')) {W = false;}
   if ((key == 's')||(key=='S')) {S = false;}
   if ((key == 'a')||(key=='A')) {A = false;}
-  if ((key == 'd')||(key=='D')) {D = false;} 
+  if ((key == 'd')||(key=='D')) {D = false;}
   if ((key == ' ')) {is_shooting = false;}
   if (key == CODED) {
   	if (keyCode == SHIFT) {
@@ -127,7 +130,7 @@ public void shoot() {
 		bullets.add(new Bullet(A2));
 	}
 }
-	
+
 
 void mouseWheel(MouseEvent event) {
 	float e = event.getCount();
